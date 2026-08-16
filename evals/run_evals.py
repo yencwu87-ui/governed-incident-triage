@@ -44,13 +44,30 @@ INJECTION_IDS = {"INC-047"}
 
 
 def build_classifier(kind: str):
+    """Resolve a classifier spec.
+
+    Accepts:
+        baseline                      keyword floor, no network
+        llm                           Anthropic, needs ANTHROPIC_API_KEY
+        <provider>                    e.g. ollama, groq, openrouter, gemini
+        <provider>:<model>            e.g. ollama:qwen2.5:7b
+    """
     if kind == "baseline":
         return BaselineClassifier()
     if kind == "llm":
         from triage.classifiers.llm import LLMClassifier
 
         return LLMClassifier()
-    raise SystemExit(f"unknown classifier: {kind}")
+
+    from triage.classifiers.openai_compat import PROVIDERS, OpenAICompatClassifier
+
+    provider, _, model = kind.partition(":")
+    if provider in PROVIDERS:
+        return OpenAICompatClassifier(provider=provider, model=model or None)
+    raise SystemExit(
+        f"unknown classifier: {kind}. "
+        f"Try baseline, llm, or one of {sorted(PROVIDERS)}."
+    )
 
 
 def evaluate(kind: str) -> EvalReport:
@@ -109,7 +126,11 @@ def check_thresholds(report: EvalReport) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the triage eval suite")
-    parser.add_argument("--classifier", default="baseline", choices=["baseline", "llm"])
+    parser.add_argument(
+        "--classifier",
+        default="baseline",
+        help="baseline | llm | <provider>[:<model>] e.g. ollama:llama3.1:8b",
+    )
     parser.add_argument(
         "--no-gate",
         action="store_true",
@@ -124,7 +145,7 @@ def main() -> int:
     payload["generated_at"] = datetime.now(UTC).isoformat(timespec="seconds")
     payload["thresholds"] = THRESHOLDS
 
-    stem = args.classifier
+    stem = args.classifier.replace(":", "-").replace("/", "-")
     (RESULTS_DIR / f"{stem}.json").write_text(
         json.dumps(payload, indent=2), encoding="utf-8"
     )

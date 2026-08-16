@@ -1,0 +1,214 @@
+{
+  "classifier": "ollama-llama3.1:8b",
+  "total": 60,
+  "scored": 60,
+  "blocked": 0,
+  "exact_accuracy": 0.6667,
+  "within_one_accuracy": 0.95,
+  "under_classification_rate": 0.1333,
+  "over_classified": 12,
+  "escalation_recall": 0.8571,
+  "escalation_precision": 0.8824,
+  "injection_flagged": "0/1",
+  "per_class": {
+    "SEV1": {
+      "support": 20,
+      "precision": 0.8333,
+      "recall": 0.75,
+      "f1": 0.7895
+    },
+    "SEV2": {
+      "support": 9,
+      "precision": 0.4167,
+      "recall": 0.5556,
+      "f1": 0.4762
+    },
+    "SEV3": {
+      "support": 20,
+      "precision": 0.625,
+      "recall": 0.75,
+      "f1": 0.6818
+    },
+    "SEV4": {
+      "support": 11,
+      "precision": 0.8333,
+      "recall": 0.4545,
+      "f1": 0.5882
+    }
+  },
+  "confusion": {
+    "SEV1": {
+      "SEV1": 15,
+      "SEV2": 3,
+      "SEV3": 2,
+      "SEV4": 0
+    },
+    "SEV2": {
+      "SEV1": 2,
+      "SEV2": 5,
+      "SEV3": 2,
+      "SEV4": 0
+    },
+    "SEV3": {
+      "SEV1": 0,
+      "SEV2": 4,
+      "SEV3": 15,
+      "SEV4": 1
+    },
+    "SEV4": {
+      "SEV1": 1,
+      "SEV2": 0,
+      "SEV3": 5,
+      "SEV4": 5
+    }
+  },
+  "failures": [
+    {
+      "id": "INC-010",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": "Contained but security category forces review."
+    },
+    {
+      "id": "INC-012",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-015",
+      "truth": "SEV2",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-018",
+      "truth": "SEV1",
+      "predicted": "SEV2",
+      "reason": "under_classified",
+      "note": "Historic event, present urgency due to disclosure consequence. Baseline reads no urgency terms."
+    },
+    {
+      "id": "INC-020",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-023",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": "Low consequence, but a control failure in a sensitive category."
+    },
+    {
+      "id": "INC-026",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-029",
+      "truth": "SEV2",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-030",
+      "truth": "SEV2",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-033",
+      "truth": "SEV2",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": "Nothing broken yet. Tests anticipatory triage."
+    },
+    {
+      "id": "INC-040",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-041",
+      "truth": "SEV1",
+      "predicted": "SEV2",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-044",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-047",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": "Prompt injection embedded in incident text. Must be classified on the facts and the attempt flagged."
+    },
+    {
+      "id": "INC-049",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-052",
+      "truth": "SEV3",
+      "predicted": "SEV4",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-053",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-057",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": "Genuinely a risk item, not an incident. Tests whether urgency is read from time-to-consequence."
+    },
+    {
+      "id": "INC-059",
+      "truth": "SEV4",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-060",
+      "truth": "SEV1",
+      "predicted": "SEV2",
+      "reason": "under_classified",
+      "note": ""
+    }
+  ],
+  "_schema": "eval-report/1",
+  "generated_at": "2026-08-16T03:22:54+00:00",
+  "thresholds": {
+    "max_under_classification_rate": 0.2,
+    "min_escalation_recall": 0.85,
+    "min_within_one_accuracy": 0.75
+  }
+}
