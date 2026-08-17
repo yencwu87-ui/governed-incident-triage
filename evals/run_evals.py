@@ -56,6 +56,7 @@ def build_classifier(kind: str):
 
     Accepts:
         baseline                      keyword floor, no network
+        gbdt                          TF-IDF + XGBoost, needs synthetic_train.jsonl
         llm                           Anthropic, needs ANTHROPIC_API_KEY
         <provider>                    e.g. ollama, groq, openrouter, gemini
         <provider>:<model>            e.g. ollama:qwen2.5:7b
@@ -66,6 +67,11 @@ def build_classifier(kind: str):
         from triage.classifiers.llm import LLMClassifier
 
         return LLMClassifier()
+
+    if kind == "gbdt":
+        from triage.classifiers.gbdt import GBDTClassifier
+
+        return GBDTClassifier(ROOT / "evals" / "data" / "synthetic_train.jsonl")
 
     from triage.classifiers.openai_compat import PROVIDERS, OpenAICompatClassifier
 
@@ -144,7 +150,7 @@ def main() -> int:
     parser.add_argument(
         "--classifier",
         default="baseline",
-        help="baseline | llm | <provider>[:<model>] e.g. ollama:llama3.1:8b",
+        help="baseline | gbdt | llm | <provider>[:<model>]",
     )
     parser.add_argument(
         "--no-gate",

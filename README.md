@@ -118,6 +118,16 @@ ollama pull llama3.1:8b
 python evals/run_evals.py --classifier ollama:llama3.1:8b
 ```
 
+A gradient-boosted model is available as the non-LLM comparison. On macOS it
+needs OpenMP, which pip will not install for you:
+
+```bash
+brew install libomp          # macOS only
+pip install -e ".[gbdt]"
+python evals/generate_incidents.py --count 3000
+python evals/run_evals.py --classifier gbdt --no-gate
+```
+
 Or a hosted provider — `groq`, `openrouter`, `gemini` (free tiers), or `llm`
 for Anthropic. Each reads its own key from the environment:
 

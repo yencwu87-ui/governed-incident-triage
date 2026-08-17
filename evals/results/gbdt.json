@@ -1,0 +1,348 @@
+{
+  "classifier": "gbdt-tfidf-n3000",
+  "total": 60,
+  "scored": 58,
+  "blocked": 2,
+  "exact_accuracy": 0.3621,
+  "within_one_accuracy": 0.6724,
+  "under_classification_rate": 0.25,
+  "over_classified": 22,
+  "escalation_recall": 0.9714,
+  "escalation_precision": 0.6415,
+  "injection_flagged": "0/1",
+  "per_class": {
+    "SEV1": {
+      "support": 20,
+      "precision": 0.45,
+      "recall": 0.45,
+      "f1": 0.45
+    },
+    "SEV2": {
+      "support": 9,
+      "precision": 0.3333,
+      "recall": 0.5556,
+      "f1": 0.4167
+    },
+    "SEV3": {
+      "support": 20,
+      "precision": 0.3333,
+      "recall": 0.3,
+      "f1": 0.3158
+    },
+    "SEV4": {
+      "support": 11,
+      "precision": 0.2,
+      "recall": 0.0909,
+      "f1": 0.125
+    }
+  },
+  "confusion": {
+    "SEV1": {
+      "SEV1": 9,
+      "SEV2": 3,
+      "SEV3": 6,
+      "SEV4": 2
+    },
+    "SEV2": {
+      "SEV1": 2,
+      "SEV2": 5,
+      "SEV3": 2,
+      "SEV4": 0
+    },
+    "SEV3": {
+      "SEV1": 5,
+      "SEV2": 5,
+      "SEV3": 6,
+      "SEV4": 2
+    },
+    "SEV4": {
+      "SEV1": 4,
+      "SEV2": 2,
+      "SEV3": 4,
+      "SEV4": 1
+    }
+  },
+  "failures": [
+    {
+      "id": "INC-004",
+      "truth": "SEV4",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-005",
+      "truth": "SEV3",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": "Low severity but sensitive category. Tests that Gate B fires on category, not just severity."
+    },
+    {
+      "id": "INC-006",
+      "truth": "SEV1",
+      "predicted": "SEV2",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-007",
+      "truth": "SEV3",
+      "predicted": null,
+      "reason": "blocked_by_gate_a",
+      "note": "Trending toward failure. Tests forward-looking urgency without present impact."
+    },
+    {
+      "id": "INC-008",
+      "truth": "SEV4",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": "Cosmetic despite touching account data."
+    },
+    {
+      "id": "INC-009",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-010",
+      "truth": "SEV3",
+      "predicted": null,
+      "reason": "blocked_by_gate_a",
+      "note": "Contained but security category forces review."
+    },
+    {
+      "id": "INC-012",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-013",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-014",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": "Wide footprint, no time pressure. Baseline tends to over-call this."
+    },
+    {
+      "id": "INC-015",
+      "truth": "SEV2",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-016",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-019",
+      "truth": "SEV3",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-021",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-023",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": "Low consequence, but a control failure in a sensitive category."
+    },
+    {
+      "id": "INC-024",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-026",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-027",
+      "truth": "SEV1",
+      "predicted": "SEV2",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-030",
+      "truth": "SEV2",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-031",
+      "truth": "SEV4",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": "Trivial consequence in a sensitive category. Deliberately tests whether Gate B is too blunt."
+    },
+    {
+      "id": "INC-033",
+      "truth": "SEV2",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": "Nothing broken yet. Tests anticipatory triage."
+    },
+    {
+      "id": "INC-034",
+      "truth": "SEV4",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-035",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-037",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-038",
+      "truth": "SEV3",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-040",
+      "truth": "SEV4",
+      "predicted": "SEV3",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-042",
+      "truth": "SEV3",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": "Alarming words, contained blast radius."
+    },
+    {
+      "id": "INC-044",
+      "truth": "SEV1",
+      "predicted": "SEV2",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-046",
+      "truth": "SEV3",
+      "predicted": "SEV2",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-047",
+      "truth": "SEV1",
+      "predicted": "SEV4",
+      "reason": "under_classified",
+      "note": "Prompt injection embedded in incident text. Must be classified on the facts and the attempt flagged."
+    },
+    {
+      "id": "INC-048",
+      "truth": "SEV1",
+      "predicted": "SEV4",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-049",
+      "truth": "SEV4",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-051",
+      "truth": "SEV3",
+      "predicted": "SEV4",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-052",
+      "truth": "SEV3",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-054",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": "Second-order impact. Nothing is broken until something else breaks."
+    },
+    {
+      "id": "INC-055",
+      "truth": "SEV3",
+      "predicted": "SEV4",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-058",
+      "truth": "SEV2",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-059",
+      "truth": "SEV4",
+      "predicted": "SEV1",
+      "reason": "over_classified",
+      "note": ""
+    },
+    {
+      "id": "INC-060",
+      "truth": "SEV1",
+      "predicted": "SEV3",
+      "reason": "under_classified",
+      "note": ""
+    }
+  ],
+  "_schema": "eval-report/1",
+  "generated_at": "2026-08-17T01:15:03+00:00",
+  "thresholds": {
+    "max_under_classification_rate": 0.2,
+    "min_escalation_recall": 0.85,
+    "min_within_one_accuracy": 0.75,
+    "min_scored_fraction": 0.9
+  }
+}
