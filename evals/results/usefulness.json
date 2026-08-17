@@ -1,0 +1,206 @@
+{
+  "null_policies": [
+    {
+      "classifier": "always-SEV1 (escalate all)",
+      "review_burden": 1.0,
+      "burden_reduction": 0.0,
+      "dangerous_misses": 0,
+      "dangerous_miss_rate": 0.0,
+      "safe_automation": 0,
+      "auto_emitted_but_wrong": 0,
+      "dangerous_ids": []
+    },
+    {
+      "classifier": "always-SEV4 (escalate none)",
+      "review_burden": 0.0,
+      "burden_reduction": 1.0,
+      "dangerous_misses": 29,
+      "dangerous_miss_rate": 1.0,
+      "safe_automation": 11,
+      "auto_emitted_but_wrong": 20,
+      "dangerous_ids": [
+        "INC-001",
+        "INC-002",
+        "INC-006",
+        "INC-009",
+        "INC-011",
+        "INC-013",
+        "INC-015",
+        "INC-017",
+        "INC-018",
+        "INC-022",
+        "INC-024",
+        "INC-025",
+        "INC-027",
+        "INC-029",
+        "INC-030",
+        "INC-032",
+        "INC-033",
+        "INC-035",
+        "INC-036",
+        "INC-039",
+        "INC-041",
+        "INC-043",
+        "INC-044",
+        "INC-047",
+        "INC-048",
+        "INC-050",
+        "INC-054",
+        "INC-058",
+        "INC-060"
+      ]
+    },
+    {
+      "classifier": "always-SEV3 (modal guess)",
+      "review_burden": 0.0,
+      "burden_reduction": 1.0,
+      "dangerous_misses": 29,
+      "dangerous_miss_rate": 1.0,
+      "safe_automation": 20,
+      "auto_emitted_but_wrong": 11,
+      "dangerous_ids": [
+        "INC-001",
+        "INC-002",
+        "INC-006",
+        "INC-009",
+        "INC-011",
+        "INC-013",
+        "INC-015",
+        "INC-017",
+        "INC-018",
+        "INC-022",
+        "INC-024",
+        "INC-025",
+        "INC-027",
+        "INC-029",
+        "INC-030",
+        "INC-032",
+        "INC-033",
+        "INC-035",
+        "INC-036",
+        "INC-039",
+        "INC-041",
+        "INC-043",
+        "INC-044",
+        "INC-047",
+        "INC-048",
+        "INC-050",
+        "INC-054",
+        "INC-058",
+        "INC-060"
+      ]
+    },
+    {
+      "classifier": "random-severity",
+      "review_burden": 0.517,
+      "burden_reduction": 0.483,
+      "dangerous_misses": 16,
+      "dangerous_miss_rate": 0.552,
+      "safe_automation": 9,
+      "auto_emitted_but_wrong": 4,
+      "dangerous_ids": [
+        "INC-006",
+        "INC-013",
+        "INC-018",
+        "INC-022",
+        "INC-025",
+        "INC-027",
+        "INC-029",
+        "INC-030",
+        "INC-033",
+        "INC-035",
+        "INC-036",
+        "INC-039",
+        "INC-043",
+        "INC-044",
+        "INC-047",
+        "INC-048"
+      ]
+    },
+    {
+      "classifier": "baseline-keyword-v2",
+      "review_burden": 0.9,
+      "burden_reduction": 0.1,
+      "dangerous_misses": 2,
+      "dangerous_miss_rate": 0.069,
+      "safe_automation": 4,
+      "auto_emitted_but_wrong": 0,
+      "dangerous_ids": [
+        "INC-017",
+        "INC-025"
+      ]
+    },
+    {
+      "classifier": "oracle-noise-0.00",
+      "review_burden": 0.583,
+      "burden_reduction": 0.417,
+      "dangerous_misses": 0,
+      "dangerous_miss_rate": 0.0,
+      "safe_automation": 25,
+      "auto_emitted_but_wrong": 0,
+      "dangerous_ids": []
+    },
+    {
+      "classifier": "oracle-noise-0.33",
+      "review_burden": 0.6,
+      "burden_reduction": 0.4,
+      "dangerous_misses": 1,
+      "dangerous_miss_rate": 0.034,
+      "safe_automation": 21,
+      "auto_emitted_but_wrong": 2,
+      "dangerous_ids": [
+        "INC-022"
+      ]
+    }
+  ],
+  "gate_ablation": {
+    "gate_a_blocks": 0,
+    "gate_b_escalations": 54,
+    "consequential_total": 29,
+    "consequential_reaching_human_with_gate_b": 27,
+    "consequential_reaching_human_without_gate_b": 0,
+    "consequential_unreviewed_if_ungated": 29
+  },
+  "coverage_sensitivity": [
+    {
+      "refusal_rate": 0.0,
+      "scored": 60,
+      "blocked": 0,
+      "under_classification_rate": 0.333,
+      "within_one_accuracy": 0.933,
+      "escalation_recall": 0.914
+    },
+    {
+      "refusal_rate": 0.25,
+      "scored": 57,
+      "blocked": 3,
+      "under_classification_rate": 0.333,
+      "within_one_accuracy": 0.93,
+      "escalation_recall": 0.857
+    },
+    {
+      "refusal_rate": 0.5,
+      "scored": 48,
+      "blocked": 12,
+      "under_classification_rate": 0.25,
+      "within_one_accuracy": 0.917,
+      "escalation_recall": 0.657
+    },
+    {
+      "refusal_rate": 0.75,
+      "scored": 24,
+      "blocked": 36,
+      "under_classification_rate": 0.117,
+      "within_one_accuracy": 0.917,
+      "escalation_recall": 0.429
+    },
+    {
+      "refusal_rate": 1.0,
+      "scored": 0,
+      "blocked": 60,
+      "under_classification_rate": 0.0,
+      "within_one_accuracy": 0.0,
+      "escalation_recall": 0.0
+    }
+  ]
+}

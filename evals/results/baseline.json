@@ -240,10 +240,11 @@
     }
   ],
   "_schema": "eval-report/1",
-  "generated_at": "2026-08-16T02:29:45+00:00",
+  "generated_at": "2026-08-17T00:12:07+00:00",
   "thresholds": {
     "max_under_classification_rate": 0.2,
     "min_escalation_recall": 0.85,
-    "min_within_one_accuracy": 0.75
+    "min_within_one_accuracy": 0.75,
+    "min_scored_fraction": 0.9
   }
 }

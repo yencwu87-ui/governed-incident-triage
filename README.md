@@ -64,6 +64,18 @@ against a 20% ceiling is the documented finding, and it is the argument for
 using a model here at all. A test asserts that it *continues* to fail, so that
 if a keyword approach ever becomes adequate, someone has to notice.
 
+A backtest of the design itself is in [`docs/backtest.md`](docs/backtest.md).
+The short version — of 20 under-classifications, 18 still reached a human
+because Gate B fired on consequence or category rather than on confidence. Under
+a synthetic classifier degraded to a 60% error rate with no calibration help,
+escalation recall holds at roughly 94%. Consequence-based escalation is robust
+to classifier quality in a way confidence-based escalation is not, and that is
+the central claim of the project.
+
+The same backtest found that the Gate B confidence threshold of 0.70 escalates
+90% of incidents to buy 8.5 points of recall, which is a bad trade and is
+documented as such rather than quietly retuned.
+
 Under-classification is the headline rather than accuracy because the two error
 directions are not equally costly. Calling a SEV1 a SEV3 forfeits a response
 window. Calling a SEV3 a SEV1 wastes people's time. Confusion matrix and
@@ -99,13 +111,23 @@ gate B    accountable: Incident Commander
           - notification_window_risk
 ```
 
-To run the LLM classifier:
+Run against a model. Free and local via Ollama, no key and no rate limit:
 
 ```bash
-pip install -e ".[llm]"
-export ANTHROPIC_API_KEY=...
-python evals/run_evals.py --classifier llm
+ollama pull llama3.1:8b
+python evals/run_evals.py --classifier ollama:llama3.1:8b
 ```
+
+Or a hosted provider — `groq`, `openrouter`, `gemini` (free tiers), or `llm`
+for Anthropic. Each reads its own key from the environment:
+
+```bash
+export GROQ_API_KEY=...
+python evals/run_evals.py --classifier groq
+```
+
+Running several and comparing is the point. One model's score tells you about
+that model. Several models failing the same gate tells you about the rubric.
 
 ---
 
@@ -123,6 +145,9 @@ evals/
   data/golden_set.jsonl   60 labelled synthetic incidents
   metrics.py              asymmetric error and escalation metrics
   run_evals.py            runner with CI-enforceable thresholds
+  backtest.py             failure taxonomy, degradation curve, threshold sweep
+  usefulness.py           null-policy comparison, gate ablation, coverage floor
+  selfimprove.py          governed proposal loop with holdout guard and ledger
 docs/
   design.md               why it is built this way
   rubric_provenance.md    where the rubric came from, and what is absent
@@ -135,6 +160,14 @@ docs/
   validates shape but not correctness, why the agent loop is capped at two
   attempts, and why reflection is fed Gate A violations but never Gate B
   triggers.
+- [`docs/backtest.md`](docs/backtest.md) — three experiments the single eval run
+  cannot answer, including where the design's protective margin actually sits.
+- [`docs/usefulness.md`](docs/usefulness.md) — whether the system earns its
+  place against "a human reads every ticket", and the metric blind spot that
+  let a total failure score 0.0% under-classification.
+- [`docs/self-improvement.md`](docs/self-improvement.md) — a self-improving loop
+  constrained so it cannot move its own goalposts, and why it rejects almost
+  everything at this sample size.
 - [`docs/governance.md`](docs/governance.md) — control mapping, and a section
   on what this explicitly does *not* claim.
 - [`docs/rubric_provenance.md`](docs/rubric_provenance.md) — the rubric derives

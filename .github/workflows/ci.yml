@@ -38,6 +38,15 @@ jobs:
       - name: Evaluate baseline
         run: python evals/run_evals.py --classifier baseline --no-gate
 
+      - name: Backtest
+        run: python evals/backtest.py
+
+      - name: Usefulness
+        run: python evals/usefulness.py
+
+      - name: Self-improvement dry run
+        run: python evals/selfimprove.py --dry-run
+
       - name: Upload eval results
         if: always()
         uses: actions/upload-artifact@v4
